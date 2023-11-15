@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Météo</title>
+</head>
+<body>
+  <h1>Météo</h1>
+  <div id="weather">
+    <img src="" alt="" id="weather-icon" />
+    <h2 id="city-name"></h2>
+    <p id="temperature"></p>
+  </div>
+  <form id="city-form">
+    <label for="city">Ville</label>
+    <input type="text" id="city" />
+    <button type="submit">Mettre à jour</button>
+  </form>
+
+  <script>
+    // Gérer la soumission du formulaire
+    document.querySelector("#city-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+
+      const city = document.querySelector("#city").value;
+      const apiKey = "e5ec04c64609ba3fa27acdf7a95bc2ec"; // Remplacez par votre clé API
+
+      // Récupère les données météo
+      const url = "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" + apiKey;
+
+      // Envoie la requête HTTP
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Vérifie si la réponse est valide
+          if (data.cod === 200) {
+            // Affiche l'image
+            const imageElement = document.querySelector("#weather-icon");
+            imageElement.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
+
+            // Affiche le nom de la ville
+            const cityElement = document.querySelector("#city-name");
+            cityElement.textContent = data.name;
+
+            // Affiche la température
+            const temperatureElement = document.querySelector("#temperature");
+            temperatureElement.textContent = data.main.temp + " °C";
+          } else {
+            // Affiche une erreur
+            const errorElement = document.querySelector("#weather h2");
+            errorElement.textContent = "Aucune ville trouvée";
+          }
+        });
+    });
+  </script>
+
+
+  <!-- <script>
+    // Gérer la soumission du formulaire
+    document.querySelector("#city-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+
+      const city = document.querySelector("#city").value;
+      const apiKey = "e5ec04c64609ba3fa27acdf7a95bc2ec"; // Remplacez par votre clé API
+
+      // Récupère les données météo
+      const url = "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" + apiKey;
+
+      // Envoie la requête HTTP
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Vérifie si la réponse est valide
+          if (data.cod === 200) {
+            // Affiche l'image
+            const imageElement = document.querySelector("#weather-icon");
+            imageElement.src = getWeatherImage(data.weather[0].main); // Fonction pour obtenir l'image correspondante
+
+            // Affiche le nom de la ville
+            const cityElement = document.querySelector("#city-name");
+            cityElement.textContent = data.name;
+
+            // Affiche la température
+            const temperatureElement = document.querySelector("#temperature");
+            temperatureElement.textContent = data.main.temp + " °C";
+          } else {
+            // Affiche une erreur
+            const errorElement = document.querySelector("#weather h2");
+            errorElement.textContent = "Aucune ville trouvée";
+          }
+        });
+    });
+
+    function getWeatherImage(weatherCondition) {
+      // Utilisez cette fonction pour mapper les conditions météorologiques aux images
+      switch (weatherCondition) {
+        case "Clear":
+          return "url_de_l'image_soleil.jpg";
+        case "Clouds":
+          return "url_de_l'image_nuage.jpg";
+        case "Rain":
+          return "url_de_l'image_pluie.jpg";
+        // Ajoutez plus de conditions au besoin
+        default:
+          return "url_de_l'image_par_défaut.jpg";
+      }
+    }
+</script> -->
+</body>
+</html>

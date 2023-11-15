@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <html>
+<head>
+  <title>Météo</title>
+</head>
+<body>
+  <h1>Météo</h1>
+  <div id="temperature"></div>
+  <div id="conditions"></div>
+
+
+    <script>
+
+// Récupère les données météo
+const url = "https://api.openweathermap.org/data/2.5/weather?q=Paris,fr&units=metric&appid=e5ec04c64609ba3fa27acdf7a95bc2ec";
+
+// Envoie la requête HTTP
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    // Affiche la température
+    const temperatureElement = document.querySelector("#temperature");
+    temperatureElement.textContent = data.main.temp;
+
+    // Affiche les conditions météo
+    const conditionsElement = document.querySelector("#conditions");
+    conditionsElement.textContent = data.weather[0].description;
+  });
+
+
+    </script>
+    
+</body>
+</html>

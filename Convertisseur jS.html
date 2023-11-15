@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Convertisseur de Devises</title>
+</head>
+<body>
+  <h1>Convertisseur de Devises</h1>
+  <div>
+    <label for="amount">Montant en USD:</label>
+    <input type="number" id="amount" placeholder="Entrez le montant en USD">
+  </div>
+  <div>
+    <label for="from">De:</label>
+    <select id="from">
+      <option value="USD">Dollar américain (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="GBP">Livre sterling (GBP)</option>
+      <!-- Ajoutez d'autres devises au besoin -->
+    </select>
+  </div>
+  <div>
+    <label for="to">À:</label>
+    <select id="to">
+      <option value="USD">Dollar américain (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="GBP">Livre sterling (GBP)</option>
+      <!-- Ajoutez d'autres devises au besoin -->
+    </select>
+  </div>
+  <button onclick="convertirDevises()">Convertir</button>
+  <p id="result"></p>
+
+
+
+<script>
+    // server.js
+const express = require('express');
+const fetch = require('node-fetch');
+const app = express();
+
+const apiKey = '907a57d1c3b31dc6245b10db';
+
+app.get('/convert', (req, res) => {
+  const fromCurrency = req.query.from;
+  const toCurrency = req.query.to;
+  const amount = req.query.amount;
+
+  if (!fromCurrency || !toCurrency || !amount) {
+    return res.status(400).json({ error: 'Paramètres manquants' });
+  }
+
+  const apiUrl = `https://api.example.com/convert?apiKey=${apiKey}&from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de la conversion de devises' });
+    });
+});
+
+app.listen(3000, () => {
+  console.log('Serveur backend démarré sur le port 3000');
+});
+
+</script>
+
+  
+</body>
+</html>

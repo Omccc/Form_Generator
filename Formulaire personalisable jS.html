@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Créateur de Formulaire</title>
+</head>
+<body>
+  <h1>Créateur de Formulaire</h1>
+  <form id="form-generator">
+    <h2>Ajouter un champ</h2>
+    <label for="field-type">Type de champ:</label>
+    <select id="field-type">
+      <option value="text">Champ de texte</option>
+      <option value="textarea">Zone de texte</option>
+      <option value="checkbox">Case à cocher</option>
+    </select>
+    <button onclick="ajouterChamp()">Ajouter</button>
+
+    <h2>Formulaire Généré</h2>
+    <div id="generated-form"></div>
+
+    <button type="submit">Soumettre</button>
+  </form>
+
+  <h2>Résultats du Formulaire</h2>
+  <div id="form-results"></div>
+
+  <script>
+    const formGenerator = document.getElementById("form-generator");
+    const generatedForm = document.getElementById("generated-form");
+    const formResults = document.getElementById("form-results");
+
+    function ajouterChamp() {
+      const fieldType = document.getElementById("field-type").value;
+      const newField = document.createElement("div");
+      if (fieldType === "text") {
+        newField.innerHTML = '<label for="text-field">Champ de texte:</label><input type="text" name="text-field"><br>';
+      } else if (fieldType === "textarea") {
+        newField.innerHTML = '<label for="textarea">Zone de texte:</label><textarea name="textarea"></textarea><br>';
+      } else if (fieldType === "checkbox") {
+        newField.innerHTML = '<input type="checkbox" name="checkbox"> <label for="checkbox">Case à cocher</label><br>';
+      }
+      generatedForm.appendChild(newField);
+    }
+
+    formGenerator.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const formData = new FormData(formGenerator);
+      let formHtml = "<form>";
+      for (const [key, value] of formData.entries()) {
+        formHtml += `<div>${key}: ${value}</div>`;
+      }
+      formHtml += "</form>";
+      formResults.innerHTML = formHtml;
+    });
+  </script>
+</body>
+</html>

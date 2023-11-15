@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chronomètre</title>
+</head>
+<body>
+  <h1>Chronomètre</h1>
+  <div id="chronometer">00:00:00</div>
+  <div>
+    <button id="start" onclick="demarrerChronometre()">Démarrer</button>
+    <button id="stop" onclick="arreterChronometre()" disabled>Arrêter</button>
+    <button id="reset" onclick="reinitialiserChronometre()">Réinitialiser</button>
+  </div>
+  <script>
+
+let intervalId;
+let startTime;
+let running = false;
+
+function demarrerChronometre() {
+  if (!running) {
+    startTime = new Date().getTime();
+    intervalId = setInterval(mettreAJourChronometre, 10);
+    running = true;
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = false;
+    document.getElementById("reset").disabled = true;
+  }
+}
+
+function arreterChronometre() {
+  clearInterval(intervalId);
+  running = false;
+  document.getElementById("start").disabled = false;
+  document.getElementById("stop").disabled = true;
+  document.getElementById("reset").disabled = false;
+}
+
+function reinitialiserChronometre() {
+  clearInterval(intervalId);
+  running = false;
+  document.getElementById("start").disabled = false;
+  document.getElementById("stop").disabled = true;
+  document.getElementById("reset").disabled = true;
+  document.getElementById("chronometer").textContent = "00:00:00";
+}
+
+function mettreAJourChronometre() {
+  const currentTime = new Date().getTime();
+  const elapsedTime = new Date(currentTime - startTime);
+  const hours = String(elapsedTime.getUTCHours()).padStart(2, "0");
+  const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, "0");
+  const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, "0");
+  const milliseconds = String(elapsedTime.getUTCMilliseconds()).padStart(3, "0");
+  document.getElementById("chronometer").textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
+
+
+
+  </script>
+</body>
+</html>

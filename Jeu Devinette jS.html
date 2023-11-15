@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jeu de Devinette</title>
+</head>
+<body>
+  <h1>Jeu de Devinette</h1>
+  <p>Devinez le nombre entre 0 et 100.</p>
+  <input type="number" id="guess" placeholder="Entrez un nombre">
+  <button onclick="devinezNombre()">Devinez</button>
+  <p id="message"></p>
+
+  <script>
+    const nombreSecret = Math.floor(Math.random() * 101); // Génère un nombre aléatoire entre 0 et 100
+    let tentatives = 0;
+
+    function devinezNombre() {
+      const devinette = parseInt(document.getElementById("guess").value);
+
+      if (isNaN(devinette)) {
+        document.getElementById("message").textContent = "Entrez un nombre valide.";
+      } else {
+        tentatives++;
+
+        if (devinette === nombreSecret) {
+          document.getElementById("message").textContent = `Félicitations ! Vous avez deviné le nombre ${nombreSecret} en ${tentatives} tentatives.`;
+          document.getElementById("message").style.color = "green";
+        } else if (devinette < nombreSecret) {
+          document.getElementById("message").textContent = "Le nombre est trop bas. Essayez encore.";
+          document.getElementById("message").style.color = "red";
+        } else {
+          document.getElementById("message").textContent = "Le nombre est trop élevé. Essayez encore.";
+          document.getElementById("message").style.color = "red";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

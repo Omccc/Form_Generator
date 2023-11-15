@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post-it App</title>
+  <link rel="stylesheet" href="styles post-it.css">
+</head>
+<body>
+  <h1>Post-it App</h1>
+  <div id="post-it-container">
+    <input type="text" id="new-post-it" placeholder="Nouveau post-it">
+    <button onclick="ajouterPostIt()">Ajouter</button>
+  </div>
+  <div id="post-its"></div>
+
+  <script>
+    const postIts = [];
+    const postItContainer = document.getElementById("post-its");
+
+    function ajouterPostIt() {
+      const text = document.getElementById("new-post-it").value;
+      if (text.trim() !== "") {
+        const postIt = document.createElement("div");
+        postIt.classList.add("post-it");
+        postIt.innerHTML = `
+          <p>${text}</p>
+          <button onclick="supprimerPostIt(this)">Supprimer</button>
+        `;
+        postIts.push(postIt);
+        postItContainer.appendChild(postIt);
+        document.getElementById("new-post-it").value = "";
+      }
+    }
+
+    function supprimerPostIt(button) {
+      const postItIndex = postIts.indexOf(button.parentElement);
+      if (postItIndex !== -1) {
+        postIts.splice(postItIndex, 1);
+        postItContainer.removeChild(button.parentElement);
+      }
+    }
+  </script>
+</body>
+</html>

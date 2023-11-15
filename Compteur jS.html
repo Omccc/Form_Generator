@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur</title>
+</head>
+
+
+
+<body>
+  <div class="counter"></div>
+
+
+  <script>
+
+    // Crée une variable pour le compteur
+let counter = 0;
+
+// Met à jour le compteur à une fréquence régulière
+setInterval(() => {
+  // Incrémente le compteur
+  counter++;
+
+  // Affiche le compteur
+  const counterElement = document.querySelector(".counter");
+  counterElement.textContent = counter;
+}, 1000);
+  </script>
+
+
+
+
+ 
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Générateur de Citations</title>
+</head>
+<body>
+  <h1>Citation aléatoire</h1>
+  <p id="citation"></p>
+  <button onclick="genererCitation()">Générer une nouvelle citation</button>
+
+  <script>
+    // Tableau de citations
+    const citations = [
+      "La vie est vraiment simple, mais nous insistons à la rendre compliquée. - Confucius",
+      "La vie est un mystère qu'il faut vivre, et non un problème à résoudre. - Gandhi",
+      "La seule chose que nous ayons à craindre, c'est la crainte elle-même. - Franklin D. Roosevelt",
+      "Le succès, c'est d'aller d'échec en échec sans perdre son enthousiasme. - Winston Churchill",
+      "La seule façon de faire du bon travail est d'aimer ce que vous faites. - Steve Jobs"
+    ];
+
+    function genererCitation() {
+      const index = Math.floor(Math.random() * citations.length);
+      const citationElement = document.getElementById("citation");
+      citationElement.textContent = citations[index];
+    }
+
+    // Générer une citation aléatoire au chargement de la page
+    genererCitation();
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mon Blog Personnel</title>
+  <link rel="stylesheet" href="Styles blog jS.css">
+</head>
+<body>
+  <h1>Mon Blog Personnel</h1>
+  <div id="article-form">
+    <input type="text" id="article-title" placeholder="Titre de l'article">
+    <textarea id="article-content" placeholder="Contenu de l'article"></textarea>
+    <button onclick="ajouterArticle()">Ajouter</button>
+  </div>
+  <div id="articles"></div>
+  <script>
+
+const articles = [];
+
+function ajouterArticle() {
+  const title = document.getElementById("article-title").value;
+  const content = document.getElementById("article-content").value;
+
+  if (title.trim() === "" || content.trim() === "") {
+    return;
+  }
+
+  const article = { title, content };
+  articles.push(article);
+  afficherArticles();
+  resetInputFields();
+}
+
+function afficherArticles() {
+  const articlesContainer = document.getElementById("articles");
+  articlesContainer.innerHTML = "";
+
+  articles.forEach((article, index) => {
+    const articleDiv = document.createElement("div");
+    articleDiv.classList.add("article");
+
+    const title = document.createElement("h2");
+    title.textContent = article.title;
+
+    const content = document.createElement("p");
+    content.textContent = article.content;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Supprimer";
+    deleteButton.onclick = () => supprimerArticle(index);
+
+    articleDiv.appendChild(title);
+    articleDiv.appendChild(content);
+    articleDiv.appendChild(deleteButton);
+
+    articlesContainer.appendChild(articleDiv);
+  });
+}
+
+function supprimerArticle(index) {
+  articles.splice(index, 1);
+  afficherArticles();
+}
+
+function resetInputFields() {
+  document.getElementById("article-title").value = "";
+  document.getElementById("article-content").value = "";
+}
+
+afficherArticles();
+
+
+
+
+
+  </script>
+</body>
+</html>

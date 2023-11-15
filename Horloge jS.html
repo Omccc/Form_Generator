@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>Horloge</title>
+</head>
+<body>
+  <div></div>
+ 
+<button style="width: 20% ; height: 10%;"   class="hour"></button>
+<button style="width: 20% ;  height: 10%;" class="minute"></button>
+
+  <script>
+
+    // Crée une variable pour l'heure actuelle
+const now = new Date();
+
+// Récupère l'heure et la minute
+const hour = now.getHours();
+const minute = now.getMinutes();
+
+// Affiche l'heure
+const hourElement = document.querySelector(".hour");
+hourElement.textContent = hour;
+
+// Affiche les minutes
+const minuteElement = document.querySelector(".minute");
+minuteElement.textContent = minute;
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+body {
+    background-image: url('url_de_votre_image_de_fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .weather-container {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .weather {
+    margin: 20px;
+  }
+  
+  #weather-icon {
+    max-width: 100px;
+  }
+  
+  #city-name {
+    font-size: 24px;
+  }
+  
+  #temperature {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  #description {
+    font-size: 18px;
+  }
+  

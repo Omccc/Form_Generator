@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Calculatrice</title>
+</head>
+<body>
+  <input type="text" id="firstNumber" />
+  <input type="text" id="secondNumber" />
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <button id="calculate">Calculer</button>
+  
+<input type="number" id="result">
+  <script>
+    // Récupère les valeurs des champs de texte
+const firstNumber = document.querySelector("#firstNumber").value;
+const secondNumber = document.querySelector("#secondNumber").value;
+
+// Récupère l'opérateur
+const operator = document.querySelector("#operator").value;
+
+// Effectue l'opération
+let result;
+switch (operator) {
+  case "+":
+    result = firstNumber + secondNumber;
+    break;
+  case "-":
+    result = firstNumber - secondNumber;
+    break;
+  case "*":
+    result = firstNumber * secondNumber;
+    break;
+  case "/":
+    result = firstNumber / secondNumber;
+    break;
+}
+
+// Affiche le résultat
+const resultElement = document.querySelector("#result");
+resultElement.textContent = result;
+  </script>
+</body>
+</html>

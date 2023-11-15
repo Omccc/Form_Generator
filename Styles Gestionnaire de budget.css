@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .budget {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .add-transaction {
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px #888;
+  }
+  
+  .transactions {
+    width: 30%;
+    text-align: left;
+  }
+  
+  .balance {
+    width: 30%;
+    text-align: left;
+  }
+  
+  input, select, button {
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .income {
+    background-color: lightgreen;
+  }
+  
+  .expense {
+    background-color: lightcoral;
+  }
+  
+  #balance-amount {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
