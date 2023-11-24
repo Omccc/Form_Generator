@@ -1,28 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Créateur de Formulaire</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #generated-form {
+      margin-top: 20px;
+    }
+
+    #form-results {
+      margin-top: 20px;
+    }
+
+    .form-field {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Créateur de Formulaire</h1>
-  <form id="form-generator">
-    <h2>Ajouter un champ</h2>
-    <label for="field-type">Type de champ:</label>
-    <select id="field-type">
-      <option value="text">Champ de texte</option>
-      <option value="textarea">Zone de texte</option>
-      <option value="checkbox">Case à cocher</option>
-    </select>
-    <button onclick="ajouterChamp()">Ajouter</button>
 
-    <h2>Formulaire Généré</h2>
-    <div id="generated-form"></div>
+  <header>
+    <h1>Form Generator</h1>
+  </header>
 
-    <button type="submit">Soumettre</button>
-  </form>
+  <section>
+    <form id="form-generator">
+      <h2>Add a Field</h2>
+      <div class="form-field">
+        <label for="field-type">Field Type:</label>
+        <select id="field-type">
+          <option value="text">Text Field</option>
+          <option value="textarea">Textarea</option>
+          <option value="checkbox">Checkbox</option>
+        </select>
+      </div>
+      <button type="button" onclick="ajouterChamp()">Add</button>
 
-  <h2>Résultats du Formulaire</h2>
-  <div id="form-results"></div>
+      <h2>Generated Form</h2>
+      <div id="generated-form"></div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Form Results</h2>
+    <div id="form-results"></div>
+  </section>
 
   <script>
     const formGenerator = document.getElementById("form-generator");
@@ -32,12 +106,14 @@
     function ajouterChamp() {
       const fieldType = document.getElementById("field-type").value;
       const newField = document.createElement("div");
+      newField.classList.add("form-field");
+
       if (fieldType === "text") {
-        newField.innerHTML = '<label for="text-field">Champ de texte:</label><input type="text" name="text-field"><br>';
+        newField.innerHTML = '<label for="text-field">Text Field:</label><input type="text" name="text-field">';
       } else if (fieldType === "textarea") {
-        newField.innerHTML = '<label for="textarea">Zone de texte:</label><textarea name="textarea"></textarea><br>';
+        newField.innerHTML = '<label for="textarea">Textarea:</label><textarea name="textarea"></textarea>';
       } else if (fieldType === "checkbox") {
-        newField.innerHTML = '<input type="checkbox" name="checkbox"> <label for="checkbox">Case à cocher</label><br>';
+        newField.innerHTML = '<input type="checkbox" name="checkbox"> <label for="checkbox">Checkbox</label>';
       }
       generatedForm.appendChild(newField);
     }
@@ -53,5 +129,6 @@
       formResults.innerHTML = formHtml;
     });
   </script>
+
 </body>
 </html>
